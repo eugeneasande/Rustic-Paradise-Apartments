@@ -1,0 +1,727 @@
+<!-- 
+    🌴 Welcome to eugz_asax's Paradise 🌴
+    If you’re reading this, you’ve officially unlocked the secret lounge.
+    Relax, grab a virtual coconut drink 🥥, and enjoy the vibes.
+    
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your serene getaway at Rustic Paradise Apartments in Kisumu, Kenya. Experience the perfect blend of rustic charm and modern comfort with amenities like free WiFi, secure parking, and beautiful rooftop views. Check availability and book your stay today.">
+    <meta name="keywords" content="Rustic Paradise Apartments, apartments in Kisumu, vacation rental Kisumu, short-term stay Kenya, serviced apartments, book accommodation, Kisumu lodging, Airbnb Kisumu, booking.com Kisumu, Kisumu stays, holiday homes Kisumu, affordable apartments Kenya, Kisumu guest house, furnished apartments Kisumu, Makasembo Estate accommodation">
+    <meta name="google-site-verification" content="EgYX5G8_bEfoeqIxcDvH5FDTTvYWineh98DyZ80G0z4" />
+    <title>Rustic Paradise Apartments - Serene Getaway in Kisumu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏡</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #8B4513; /* SaddleBrown */
+            --secondary-color: #D2B48C; /* Tan */
+            --background-color: #F5F5DC; /* Beige */
+            --text-color: #36454F; /* Charcoal */
+        }
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            font-size: 90%;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .calendar-day.booked {
+            background-color: #FADBD8;
+            color: #78281F;
+            cursor: not-allowed;
+            position: relative;
+            text-decoration: line-through;
+        }
+        .calendar-day.available {
+            background-color: #E8F8F5;
+            color: #117864;
+            cursor: pointer;
+        }
+        .calendar-day.today {
+            border: 2px solid var(--primary-color);
+        }
+        .calendar-day.selected {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #A0522D; /* Peru */
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+        .gallery-item {
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: galleryFadeIn 0.6s ease-out forwards;
+        }
+        @keyframes galleryFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .lightbox {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox-img-container {
+            width: 90%;
+            height: 80%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease-in-out;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0.4);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .lightbox-nav:hover { background: rgba(0,0,0,0.7); }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="https://i.ibb.co/9kkLgYkb/rustic.png" alt="Rustic Paradise Logo" class="h-10 w-10 rounded-full">
+                <span class="text-2xl font-bold" style="color: var(--primary-color);">Rustic Paradise Apartments</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-gray-600 hover:text-yellow-900 border-b-2 border-transparent hover:border-yellow-900 transition-colors">Home</a>
+                <a href="#amenities" class="text-gray-600 hover:text-yellow-900 border-b-2 border-transparent hover:border-yellow-900 transition-colors">Amenities</a>
+                <a href="#calendar" class="text-gray-600 hover:text-yellow-900 border-b-2 border-transparent hover:border-yellow-900 transition-colors">Booking</a>
+                <a href="#gallery" class="text-gray-600 hover:text-yellow-900 border-b-2 border-transparent hover:border-yellow-900 transition-colors">Gallery</a>
+                <a href="#contact" class="text-gray-600 hover:text-yellow-900 border-b-2 border-transparent hover:border-yellow-900 transition-colors">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i class="fas fa-bars text-2xl" style="color: var(--primary-color);"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="#home" class="block text-gray-600 hover:text-yellow-900">Home</a>
+            <a href="#amenities" class="block text-gray-600 hover:text-yellow-900">Amenities</a>
+            <a href="#calendar" class="block text-gray-600 hover:text-yellow-900">Calendar & Booking</a>
+            <a href="#gallery" class="block text-gray-600 hover:text-yellow-900">Gallery</a>
+            <a href="#contact" class="block text-gray-600 hover:text-yellow-900">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="home" class="relative text-center py-24 bg-white rounded-lg shadow-xl overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://i.ibb.co/9kkLgYkb/rustic.png');"></div>
+            <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+            <div class="relative z-10 p-8">
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">Your Serene Getaway Awaits</h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">Experience the perfect blend of rustic charm and modern comfort. Your tranquil escape is just a booking away.</p>
+                <a href="#calendar" class="btn-primary font-bold py-3 px-8 rounded-full text-lg">Book Your Stay</a>
+            </div>
+        </section>
+
+        <section id="amenities" class="py-20 bg-white rounded-lg shadow-xl mt-12 p-8">
+            <h2 class="text-4xl font-bold text-center mb-12" style="color: var(--primary-color);">Everything You Need</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-center">
+                 <div class="group p-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="flex items-center justify-center h-20 w-20 mx-auto rounded-full mb-4" style="background-color: var(--background-color);">
+                        <i class="fas fa-binoculars text-4xl transition-transform duration-300 group-hover:scale-110" style="color: var(--primary-color);"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg">Rooftop View</h3>
+                </div>
+                 <div class="group p-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="flex items-center justify-center h-20 w-20 mx-auto rounded-full mb-4" style="background-color: var(--background-color);">
+                        <i class="fas fa-square-parking text-4xl transition-transform duration-300 group-hover:scale-110" style="color: var(--primary-color);"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg">Ample Secure Parking</h3>
+                </div>
+                <div class="group p-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="flex items-center justify-center h-20 w-20 mx-auto rounded-full mb-4" style="background-color: var(--background-color);">
+                        <i class="fas fa-wifi text-4xl transition-transform duration-300 group-hover:scale-110" style="color: var(--primary-color);"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg">Free High-Speed WiFi</h3>
+                </div>
+                 <div class="group p-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="flex items-center justify-center h-20 w-20 mx-auto rounded-full mb-4" style="background-color: var(--background-color);">
+                        <i class="fas fa-glass-water text-4xl transition-transform duration-300 group-hover:scale-110" style="color: var(--primary-color);"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg">Clean Water</h3>
+                </div>
+                <div class="group p-4 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                     <div class="flex items-center justify-center h-20 w-20 mx-auto rounded-full mb-4" style="background-color: var(--background-color);">
+                        <i class="fas fa-shield-halved text-4xl transition-transform duration-300 group-hover:scale-110" style="color: var(--primary-color);"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg">Guaranteed Security</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="calendar" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12" style="color: var(--primary-color);">Check Availability & Book</h2>
+            <div id="calendar-container" class="bg-white p-6 rounded-lg shadow-xl" style="display: none;">
+                <div class="flex justify-between items-center mb-6">
+                    <button id="prev-month" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition">&lt; Prev</button>
+                    <h3 id="month-year" class="text-2xl font-semibold"></h3>
+                    <button id="next-month" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition">Next &gt;</button>
+                </div>
+                <div id="calendar-grid" class="grid grid-cols-7 gap-2 text-center">
+                </div>
+                <div class="flex justify-center mt-6 space-x-6 text-sm">
+                    <div class="flex items-center"><span class="w-4 h-4 mr-2 rounded" style="background-color: #E8F8F5;"></span> Available</div>
+                    <div class="flex items-center"><span class="w-4 h-4 mr-2 rounded" style="background-color: #FADBD8;"></span> Booked</div>
+                    <div class="flex items-center"><span class="w-4 h-4 mr-2 rounded border-2" style="border-color: var(--primary-color);"></span> Today</div>
+                </div>
+            </div>
+            <div id="loading-calendar" class="text-center py-10">
+                <div class="loader inline-block"></div>
+                <p class="mt-2">Loading calendar...</p>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12" style="color: var(--primary-color);">Explore Our Paradise</h2>
+            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            </div>
+             <div id="loading-gallery" class="text-center py-10">
+                <div class="loader inline-block"></div>
+                <p class="mt-2">Loading gallery...</p>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-white rounded-lg shadow-xl mt-12 p-8">
+            <h2 class="text-4xl font-bold text-center mb-12" style="color: var(--primary-color);">Get In Touch</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Contact Information</h3>
+                    <p class="mb-3 flex items-start"><i class="fas fa-map-marker-alt w-6 text-xl mr-3" style="color: var(--primary-color);"></i><span id="contact-location">Block C, Makasembo Estate, Kisumu, Kenya</span></p>
+                    <a id="phone-link" href="tel:+254711262157" class="mb-3 flex items-center hover:underline"><i class="fas fa-phone-alt w-6 text-xl mr-3" style="color: var(--primary-color);"></i><span id="contact-phone">+254 711 262157</span></a>
+                    <a id="email-link" href="mailto:" class="mb-3 flex items-center hover:underline"><i class="fas fa-envelope w-6 text-xl mr-3" style="color: var(--primary-color);"></i><span id="contact-email"></span></a>
+                    <a id="whatsapp-link" href="https://wa.me/254711262157" target="_blank" rel="noopener noreferrer" class="btn-whatsapp inline-block w-full text-center font-bold py-3 px-8 rounded-lg mt-4">
+                        <i class="fab fa-whatsapp mr-2"></i>Chat with us on WhatsApp
+                    </a>
+                    <p class="mt-6">We're available 24/7 to answer any questions you may have. We look forward to hosting you!</p>
+                </div>
+                <div class="space-y-4">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.9060032845427!2d34.769724399999994!3d-0.10193084999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182aa49c66d03ddf%3A0xa551fb6958e38255!2sMakasembo%20Estate%2C%20Kisumu!5e0!3m2!1sen!2ske!4v1757749248073!5m2!1sen!2ske"
+                        width="100%" 
+                        height="350" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="rounded-lg shadow-md w-full">
+                    </iframe>
+                     <a href="https://maps.app.goo.gl/XMgNuaKRhQfJUNzx5?g_st=awb" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block w-full text-center font-bold py-3 px-8 rounded-lg">
+                        <i class="fas fa-map-signs mr-2"></i>Open in Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white mt-12 shadow-inner py-10">
+        <div class="container mx-auto text-center text-gray-600">
+            <div class="flex justify-center items-center space-x-2 mb-4">
+                <img src="https://i.ibb.co/9kkLgYkb/rustic.png" alt="Rustic Paradise Logo" class="h-10 w-10 rounded-full">
+                <span class="font-bold text-xl" style="color: var(--primary-color);">Rustic Paradise Apartments</span>
+            </div>
+            <p>&copy; 2025 Rustic Paradise Apartments. All Rights Reserved. | Site by <a href="https://www.instagram.com/eugz_asax/" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-900 underline font-semibold">@eugz_asax</a></p>
+        </div>
+    </footer>
+
+    <div id="booking-modal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md m-4">
+            <h3 class="text-3xl font-bold mb-6 text-center" style="color: var(--primary-color);">Book Your Stay</h3>
+            <form id="booking-form" class="space-y-4">
+                <div>
+                    <label for="name" class="block mb-1 font-medium">Full Name</label>
+                    <input type="text" id="name" name="name" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-yellow-800 focus:border-transparent outline-none" required>
+                </div>
+                <div>
+                    <label for="email" class="block mb-1 font-medium">Email Address</label>
+                    <input type="email" id="email" name="email" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-yellow-800 focus:border-transparent outline-none" required>
+                </div>
+                <div>
+                    <label for="phone" class="block mb-1 font-medium">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-yellow-800 focus:border-transparent outline-none" required>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="check-in" class="block mb-1 font-medium">Check-In</label>
+                        <input type="date" id="check-in" name="checkIn" class="w-full p-3 border rounded-md bg-gray-200" readonly>
+                    </div>
+                    <div>
+                        <label for="check-out" class="block mb-1 font-medium">Check-Out</label>
+                        <input type="date" id="check-out" name="checkOut" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-yellow-800 focus:border-transparent outline-none" required>
+                    </div>
+                </div>
+                <div id="apartment-type-container" class="hidden">
+                     <label for="apartment-type" class="block mb-1 font-medium">Apartment Type</label>
+                     <select id="apartment-type" name="apartmentType" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-yellow-800 focus:border-transparent outline-none">
+                         <option value="1-bedroom">1 Bedroom</option>
+                         <option value="2-bedroom">2 Bedroom</option>
+                     </select>
+                </div>
+                <div class="flex justify-end space-x-4 pt-2">
+                    <button type="button" id="cancel-booking" class="px-6 py-3 bg-gray-300 rounded-md hover:bg-gray-400 transition">Cancel</button>
+                    <button type="submit" id="submit-booking" class="btn-primary px-6 py-3 font-semibold rounded-md">Confirm Booking</button>
+                </div>
+            </form>
+            <div id="booking-loader" class="text-center hidden">
+                <div class="loader inline-block"></div>
+                <p class="mt-2">Submitting your booking...</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="response-modal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-8 rounded-lg shadow-2xl text-center w-full max-w-md m-4">
+            <div id="response-icon" class="text-6xl mb-4"></div>
+            <h3 id="response-title" class="text-3xl font-bold mb-4"></h3>
+            <p id="response-message" class="text-gray-600 mb-6"></p>
+            <button id="close-response" class="btn-primary px-8 py-3 font-semibold rounded-md">Close</button>
+        </div>
+    </div>
+
+    <div id="lightbox-modal" class="lightbox fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+        <div class="lightbox-img-container">
+            <img id="lightbox-img" src="" class="lightbox-img">
+        </div>
+        <button id="close-lightbox" class="absolute top-4 right-6 text-white text-5xl font-light hover:text-gray-300 transition">&times;</button>
+        <button id="lightbox-prev" class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <button id="lightbox-next" class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        <div class="absolute bottom-6 text-center w-full">
+             <p id="lightbox-caption" class="text-white text-lg tracking-wide"></p>
+             <p id="lightbox-counter" class="text-gray-300 text-sm mt-1"></p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, collection, doc, onSnapshot, writeBatch, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAqI2lMWkQ56CnnQt0kwBcDopILwAbx-38",
+            authDomain: "rustic-paradise.firebaseapp.com",
+            projectId: "rustic-paradise",
+            storageBucket: "rustic-paradise.appspot.com",
+            messagingSenderId: "444250380267",
+            appId: "1:444250380267:web:2b28e278e557040a5e6bae",
+            measurementId: "G-R6RXQV3PC1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentDate = new Date();
+            let bookedDates = new Set();
+            let galleryData = [];
+            let currentLightboxIndex = 0;
+
+            const monthYearEl = document.getElementById('month-year');
+            const calendarGridEl = document.getElementById('calendar-grid');
+            const galleryGridEl = document.getElementById('gallery-grid');
+            const bookingModal = document.getElementById('booking-modal');
+            const responseModal = document.getElementById('response-modal');
+            const bookingForm = document.getElementById('booking-form');
+            const loadingCalendar = document.getElementById('loading-calendar');
+            const loadingGallery = document.getElementById('loading-gallery');
+            const bookingLoader = document.getElementById('booking-loader');
+            
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            const closeLightboxBtn = document.getElementById('close-lightbox');
+
+            const checkInInput = document.getElementById('check-in');
+            const checkOutInput = document.getElementById('check-out');
+            const apartmentTypeContainer = document.getElementById('apartment-type-container');
+
+            function toYYYYMMDD(date) {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+
+            function setupRealtimeListeners() {
+                const bookedDatesQuery = collection(db, "bookedDates");
+                onSnapshot(bookedDatesQuery, (snapshot) => {
+                    bookedDates.clear();
+                    snapshot.forEach(doc => {
+                        bookedDates.add(doc.id);
+                    });
+                    renderCalendar();
+                    loadingCalendar.style.display = 'none';
+                    document.getElementById('calendar-container').style.display = 'block';
+                }, (error) => {
+                    console.error("Error fetching booked dates:", error);
+                    showResponseModal('error', 'Load Failed', 'Could not load calendar data. Please refresh.');
+                });
+
+                const galleryQuery = collection(db, "gallery");
+                onSnapshot(galleryQuery, (snapshot) => {
+                    galleryData = [];
+                    snapshot.forEach(doc => {
+                        galleryData.push(doc.data());
+                    });
+                    renderGallery(galleryData);
+                    loadingGallery.style.display = 'none';
+                }, (error) => {
+                    console.error("Error fetching gallery:", error);
+                    galleryGridEl.innerHTML = '<p class="text-center col-span-full">Could not load gallery images.</p>';
+                    loadingGallery.style.display = 'none';
+                });
+
+                onSnapshot(doc(db, "siteInfo", "contactDetails"), (doc) => {
+                    const locationEl = document.getElementById('contact-location');
+                    const phoneEl = document.getElementById('contact-phone');
+                    const emailEl = document.getElementById('contact-email');
+                    const whatsappLink = document.getElementById('whatsapp-link');
+                    const phoneLink = document.getElementById('phone-link');
+                    const emailLink = document.getElementById('email-link');
+
+                    if (doc.exists()) {
+                        const info = doc.data();
+                        const phone = info.phone || '+254711262157';
+                        const email = info.email || 'bookings@rusticparadise.com';
+
+                        locationEl.textContent = info.location || 'Block C, Makasembo Estate, Kisumu, Kenya';
+                        phoneEl.textContent = phone;
+                        emailEl.textContent = email;
+                        
+                        const telNumber = phone.replace(/\s+/g, '');
+                        const whatsappNumber = phone.replace(/\s+/g, '').replace('+', '');
+                        
+                        phoneLink.href = `tel:${telNumber}`;
+                        emailLink.href = `mailto:${email}`;
+                        whatsappLink.href = `https://wa.me/${whatsappNumber}`;
+
+                    } else {
+                        locationEl.textContent = 'Block C, Makasembo Estate, Kisumu, Kenya';
+                        phoneEl.textContent = '+254 711 262157';
+                        emailEl.textContent = 'bookings@rusticparadise.com';
+                        
+                        phoneLink.href = 'tel:+254711262157';
+                        emailLink.href = 'mailto:bookings@rusticparadise.com';
+                        whatsappLink.href = 'https://wa.me/254711262157';
+                    }
+                });
+            }
+
+            function renderCalendar() {
+                calendarGridEl.innerHTML = '';
+                monthYearEl.textContent = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
+                const today = new Date();
+                today.setHours(0,0,0,0);
+                const firstDayOfMonth = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                daysOfWeek.forEach(day => {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'font-semibold text-gray-600 pb-2';
+                    dayEl.textContent = day;
+                    calendarGridEl.appendChild(dayEl);
+                });
+                for (let i = 0; i < firstDayOfMonth; i++) {
+                    calendarGridEl.appendChild(document.createElement('div'));
+                }
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const date = new Date(year, month, day);
+                    const dateString = toYYYYMMDD(date);
+                    const dayEl = document.createElement('div');
+                    dayEl.textContent = day;
+                    dayEl.dataset.date = dateString;
+                    dayEl.className = 'calendar-day p-3 rounded-lg transition-transform transform hover:scale-110';
+                    const isBooked = bookedDates.has(dateString);
+                    const isPast = date < today;
+                    if (date.getTime() === today.getTime()) {
+                        dayEl.classList.add('today');
+                    }
+                    if(isPast || isBooked) {
+                        dayEl.classList.add('booked');
+                    } else {
+                        dayEl.classList.add('available');
+                        dayEl.addEventListener('click', () => handleDateClick(date));
+                    }
+                    calendarGridEl.appendChild(dayEl);
+                }
+            }
+
+            function handleDateClick(date) {
+                const dateString = toYYYYMMDD(date);
+                checkInInput.value = dateString;
+                checkOutInput.value = dateString; 
+                checkOutInput.min = dateString;
+                toggleApartmentTypeSelector();
+                showBookingModal();
+            }
+            
+            checkOutInput.addEventListener('change', toggleApartmentTypeSelector);
+
+            function toggleApartmentTypeSelector() {
+                const checkInDate = new Date(checkInInput.value);
+                const checkOutDate = new Date(checkOutInput.value);
+                if (checkInInput.value && checkOutInput.value && checkOutDate > checkInDate) {
+                    apartmentTypeContainer.classList.remove('hidden');
+                } else {
+                    apartmentTypeContainer.classList.add('hidden');
+                }
+            }
+            
+            document.getElementById('prev-month').addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            });
+
+            document.getElementById('next-month').addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            });
+
+            function renderGallery(newGalleryData) {
+                galleryGridEl.innerHTML = '';
+                if(!newGalleryData || newGalleryData.length === 0){
+                    galleryGridEl.innerHTML = '<p class="text-center col-span-full">No gallery images available at the moment.</p>';
+                    return;
+                }
+                newGalleryData.forEach((item, index) => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'relative rounded-lg shadow-lg overflow-hidden group gallery-item';
+                    galleryItem.style.animationDelay = `${index * 100}ms`;
+                    galleryItem.innerHTML = `
+                        <img src="${item.imageUrl}" alt="${item.caption}" class="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center p-4">
+                             <div class="text-center">
+                                 <i class="fas fa-search-plus text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                                 <p class="text-white text-lg font-semibold mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">${item.caption}</p>
+                             </div>
+                        </div>
+                    `;
+                    galleryItem.addEventListener('click', () => openLightbox(index));
+                    galleryGridEl.appendChild(galleryItem);
+                });
+            }
+
+            function showImage(index) {
+                if(index < 0 || index >= galleryData.length) return;
+                currentLightboxIndex = index;
+                const item = galleryData[index];
+                
+                lightboxImg.src = item.imageUrl;
+                lightboxCaption.textContent = item.caption;
+                lightboxCounter.textContent = `${index + 1} / ${galleryData.length}`;
+            }
+
+            function openLightbox(index) {
+                lightboxModal.classList.add('active');
+                showImage(index);
+            }
+
+            function closeLightbox() {
+                lightboxModal.classList.remove('active');
+            }
+            
+            function showNextImage() {
+                const newIndex = (currentLightboxIndex + 1) % galleryData.length;
+                showImage(newIndex);
+            }
+
+            function showPrevImage() {
+                const newIndex = (currentLightboxIndex - 1 + galleryData.length) % galleryData.length;
+                showImage(newIndex);
+            }
+
+            closeLightboxBtn.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', showPrevImage);
+            lightboxNext.addEventListener('click', showNextImage);
+            document.addEventListener('keydown', (e) => {
+                if(lightboxModal.classList.contains('active')) {
+                    if (e.key === 'ArrowRight') showNextImage();
+                    if (e.key === 'ArrowLeft') showPrevImage();
+                    if (e.key === 'Escape') closeLightbox();
+                }
+            });
+
+            function showBookingModal() { bookingModal.classList.remove('hidden'); }
+            function hideBookingModal() {
+                bookingModal.classList.add('hidden');
+                bookingForm.reset();
+                bookingForm.style.display = 'block';
+                bookingLoader.style.display = 'none';
+            }
+
+            function showResponseModal(type, title, message) {
+                const iconEl = document.getElementById('response-icon');
+                iconEl.innerHTML = type === 'success' ? '<i class="fas fa-check-circle text-green-500"></i>' : '<i class="fas fa-times-circle text-red-500"></i>';
+                document.getElementById('response-title').textContent = title;
+                document.getElementById('response-message').textContent = message;
+                responseModal.classList.remove('hidden');
+            }
+
+            function hideResponseModal() { responseModal.classList.add('hidden'); }
+
+            document.getElementById('cancel-booking').addEventListener('click', hideBookingModal);
+            document.getElementById('close-response').addEventListener('click', hideResponseModal);
+
+            bookingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                bookingForm.style.display = 'none';
+                bookingLoader.style.display = 'block';
+
+                const formData = new FormData(bookingForm);
+                const checkInStr = formData.get('checkIn');
+                const checkOutStr = formData.get('checkOut');
+
+                const checkInDate = new Date(checkInStr + 'T00:00:00');
+                const checkOutDate = new Date(checkOutStr + 'T00:00:00');
+
+                if (checkOutDate < checkInDate) {
+                    hideBookingModal();
+                    showResponseModal('error', 'Invalid Dates', 'Check-out date cannot be before the check-in date.');
+                    return;
+                }
+                
+                const bookingData = {
+                    guestName: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    checkIn: checkInStr,
+                    checkOut: checkOutStr,
+                    timestamp: serverTimestamp()
+                };
+
+                // Add apartment type if it was selected
+                const stayDuration = (checkOutDate - checkInDate) / (1000 * 3600 * 24);
+                if (stayDuration > 0) {
+                    bookingData.apartmentType = formData.get('apartmentType');
+                } else {
+                    bookingData.apartmentType = 'Day Stay';
+                }
+
+                const loopEndDate = new Date(checkOutDate);
+                loopEndDate.setDate(loopEndDate.getDate() + 1);
+
+                for (let d = new Date(checkInDate); d < loopEndDate; d.setDate(d.getDate() + 1)) {
+                    if (bookedDates.has(toYYYYMMDD(d))) {
+                        hideBookingModal();
+                        showResponseModal('error', 'Dates Unavailable', 'One or more dates in your selected range are already booked.');
+                        return;
+                    }
+                }
+
+                try {
+                    const batch = writeBatch(db);
+                    
+                    const bookingRef = doc(collection(db, "bookings"));
+                    batch.set(bookingRef, bookingData);
+
+                    for (let d = new Date(checkInDate); d < loopEndDate; d.setDate(d.getDate() + 1)) {
+                        const dateString = toYYYYMMDD(d);
+                        batch.set(doc(db, "bookedDates", dateString), { status: "Booked" });
+                    }
+                    
+                    await batch.commit();
+                    
+                    hideBookingModal();
+                    showResponseModal('success', 'Booking Confirmed!', 'Thank you! Your booking is confirmed. The calendar has been updated.');
+
+                } catch (error) {
+                    console.error("Booking Error: ", error);
+                    hideBookingModal();
+                    showResponseModal('error', 'Booking Error', 'An unexpected error occurred. Please try again.');
+                }
+            });
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            setupRealtimeListeners();
+        });
+    </script>
+    <script>
+  console.log(`
+    ░█▀▀░█░█░█▀▀░█▀▀░█░█      🌴
+    ░█░█░▄▀▄░█▀▀░█▀▀░▀▄▀  Welcome to
+    ░▀▀▀░▀░▀░▀▀▀░▀▀▀░░▀░  eugz_asax's Paradise 🎉
+  `);
+  console.log("%cEnjoyyy your stay 😎🍹", 
+                "color: brown; font-size:16px; font-weight:bold; font-family: monospace;");
+</script>
+</body>
+</html>
+
