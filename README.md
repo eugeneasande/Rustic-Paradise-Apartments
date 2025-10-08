@@ -1,6 +1,6 @@
 # 🏡 Rustic Paradise Apartments — Booking Website (v1.0.0)
 
-> Developed by **Eugene Asande (@eugz_asande / github.com/eugeneasande)**  
+> Developed by **Eugene Asande (@eugz_asax / github.com/eugeneasande)**  
 > A serene, user-friendly booking site for Rustic Paradise Apartments in Kisumu, Kenya.  
 > Guests can explore amenities, check room availability, view gallery, and book directly.
 
