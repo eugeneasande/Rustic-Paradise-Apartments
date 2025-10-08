@@ -58,5 +58,5 @@ This website aims to deliver a smooth booking experience with real-time updates 
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/eugeneasande/your-booking-repo.git
-   cd your-booking-repo
+   git clone https://github.com/eugeneasande/Rustic-Paradise-Apartments
+   cd Rustic-Paradise-Apartments
