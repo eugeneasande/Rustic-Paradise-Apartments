@@ -1,62 +1,67 @@
-# 🏡 Rustic Paradise Apartments — Booking Website (v1.0.0)
+# 🏡 Rustic Paradise Apartments — Booking Website (v1.1.0)
 
-> Developed by **Eugene Asande (@eugz_asax / github.com/eugeneasande)**  
-> A serene, user-friendly booking site for Rustic Paradise Apartments in Kisumu, Kenya.  
-> Guests can explore amenities, check room availability, view gallery, and book directly.
+> Developed by **Eugene Asande (@eugz_asax · github.com/eugeneasande)**  
+> A smooth, modern, and user-friendly booking platform for Rustic Paradise Apartments in Kisumu, Kenya.  
+> Now includes **Rustic AI Concierge** — an interactive assistant that helps guests with booking, pricing, and availability requests.
 
 ---
 
 ## 🌴 Overview
 
-Rustic Paradise Apartments offers an elegant blend of rustic charm and modern functionalities.  
-This website aims to deliver a smooth booking experience with real-time updates and responsive design.
+Rustic Paradise Apartments combines comfort, visual elegance, and digital convenience.  
+The site enables guests to browse apartment photos, check room availability, and place booking requests — all in real time.
+
+With the **Rustic AI Concierge**, guests can now:
+- Ask **“Which dates are available?”**
+- Get **pricing details**
+- Receive **booking assistance**
+- Or simply chat for quick help
 
 ---
 
 ## 🚀 Features
 
+- **Rustic AI Concierge (New!)**  
+  Built-in AI assistant for booking guidance and answering common guest questions.
+
 - **Real-Time Booking Calendar**  
-  Synchronized with **Firebase Firestore** to show booked / available dates live.
+  Connected to **Firebase Firestore**, showing available vs. booked dates instantly.
 
 - **Booking Modal**  
-  Validates user input, handles check-in / check-out logic, and submits booking requests.
+  Validates guest input, check-in/out dates, and submits secure booking requests.
 
-- **Dynamic Gallery with Lightbox**  
-  Loads images dynamically from Firestore; users get a clean, interactive gallery experience.
+- **Dynamic Gallery (Lightbox View)**  
+  All apartment images are dynamically loaded via Firestore for easy updates.
 
-- **Contact & Map Integration**  
-  Embedded Google Maps, clickable WhatsApp / Phone / Email links.  
-  Contact details also loaded live (so you can change them via the backend).
+- **Integrated Contact & Map**  
+  WhatsApp, Phone, Email — all clickable. Google Maps location embedded.
 
-- **Responsive Design**  
-  Built with **Tailwind CSS**, optimized for mobile, tablet, desktop.
+- **Responsive Modern UI**  
+  Uses **Tailwind CSS** to remain crisp on mobile, tablet, and desktop.
 
-- **SEO & Meta Setup**  
-  Includes meta description, keywords, and Google site verification.
+- **Live Refresh Updates**  
+  Firestore snapshot listeners update the site without page reloads.
 
-- **Realtime Updates**  
-  Uses Firestore snapshot listeners to auto-refresh calendar & gallery without page reloads.
-
-- **Animations**  
-  Smooth fade-ins, hover effects, transitions to polish the UX.
+- **Smooth Animations**  
+  Clean transitions + hover effects for a polished, premium feel.
 
 ---
 
 ## 🧰 Tech Stack
 
-| Part | Tech |
-|------|------|
-| Frontend | HTML5, Tailwind CSS, Vanilla JS (ES Modules) |
-| Backend / DB | Firebase Firestore |
-| Hosting | Netlify / GitHub Pages (or whichever you deploy) |
-| Version | `v1.0.0` |
-| Developer | Eugene Asande ([GitHub](https://github.com/eugeneasande)) |
+| Component | Technology |
+|----------|------------|
+| Frontend | HTML5, Tailwind CSS, Vanilla JavaScript (ES Modules) |
+| Backend / Database | Firebase Firestore |
+| Hosting | Netlify / GitHub Pages |
+| Version | `v1.1.0` |
+| Developer | **Eugene Asande** ([GitHub](https://github.com/eugeneasande)) |
 
 ---
 
 ## ⚙️ Setup & Deployment
 
-1. **Clone the repo**
+1. Clone the repository:
    ```bash
    git clone https://github.com/eugeneasande/Rustic-Paradise-Apartments
    cd Rustic-Paradise-Apartments
